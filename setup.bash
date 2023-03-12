@@ -57,9 +57,8 @@ done
 
 if [ ! -z $INSTALL ]; then
 	mkdir -p $HOME/.config/alacritty
-	cp ./config/alacritty.yml $HOME/.config/alacritty
+	cp ./config/alacritty.yaml $HOME/.config/alacritty
 	cp ./config/bash_aliases $HOME/.bash_aliases
-	cp ./config/profile $HOME/.profile
 	cp ./config/tmux.conf $HOME/.tmux.conf
 	cp ./config/vimrc $HOME/.vimrc
 fi
@@ -77,7 +76,7 @@ NIX_DEPS="alacritty bat ripgrep thefuck vim"
 
 if [ ! -z $INSTALL ]; then
 	pacman -Syu tmux
-	for DEP of $NIX_DEPS; do
+	for DEP in $NIX_DEPS; do
 		nix-env --install $DEP
 	done
 fi
@@ -85,7 +84,7 @@ fi
 ########################### Uninstall nix dependencies #########################
 
 if [ -z $INSTALL ]; then
-	for DEP of $NIX_DEPS; do
+	for DEP in $NIX_DEPS; do
 		nix-env --uninstall $DEP
 	done
 	nix-collect-garbage
@@ -98,7 +97,6 @@ if [ -z $INSTALL ]; then
 	rmdir $HOME/.config/alacritty &> /dev/null
 	rmdir $HOME/.config/ &> /dev/null
 	rm $HOME/.bash_aliases
-	rm $HOME/.profile
 	rm $HOME/.tmux.conf
 	rm $HOME/.vimrc
 fi
