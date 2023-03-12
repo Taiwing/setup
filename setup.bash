@@ -57,7 +57,7 @@ done
 
 if [ ! -z $INSTALL ]; then
 	mkdir -p $HOME/.config/alacritty
-	cp ./config/alacritty.yaml $HOME/.config/alacritty
+	cp ./config/alacritty.yml $HOME/.config/alacritty
 	cp ./config/bash_aliases $HOME/.bash_aliases
 	cp ./config/tmux.conf $HOME/.tmux.conf
 	cp ./config/vimrc $HOME/.vimrc
@@ -72,10 +72,10 @@ fi
 
 ######################### Install dependencies #################################
 
-NIX_DEPS="alacritty bat ripgrep thefuck vim"
+NIX_DEPS="bat ripgrep thefuck vim"
 
 if [ ! -z $INSTALL ]; then
-	pacman -Syu tmux
+	pacman -Syu alacritty tmux
 	for DEP in $NIX_DEPS; do
 		nix-env --install $DEP
 	done
