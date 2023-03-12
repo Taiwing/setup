@@ -1,0 +1,59 @@
+" Fix alacritty vim colors (without tmux)
+if &term == "alacritty"
+	let &term = "xterm-256color"
+endif
+" Colorscheme
+colorscheme slate
+" Show matching brackets when text indicator is over them
+set showmatch 
+" How many tenths of a second to blink when matching brackets
+set mat=2
+" Cool syntax coloring by vim
+syntax on
+" Tab width
+set tabstop=4
+" Display a lateral bar to limit lines to 80 characters
+set colorcolumn=80
+" Dislpay line numbers
+set number
+" Autoindent new lines
+set autoindent
+" Indentation for python files
+autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab
+" Indentation for javascript files
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
+" Indentation for javascript files
+autocmd Filetype json setlocal ts=2 sw=2 sts=0 expandtab
+" Indentation for vue files
+autocmd Filetype vue setlocal ts=2 sw=4 sts=0 expandtab
+" Indentation for yaml files
+au BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" Indentation for C files
+au BufNewFile,BufReadPost *.{c,h,cpp} set filetype=c
+autocmd FileType c setlocal ts=4 sts=4 sw=4
+" Indentation for C++ files
+au BufNewFile,BufReadPost *.{hpp,cpp} set filetype=cpp
+autocmd FileType cpp setlocal ts=4 sts=4 sw=4
+" Remove trailing whitespaces
+autocmd BufWritePre * %s/\s\+$//e
+
+" ALE configuration (when we find a solution for C makefile parsing)
+" C parse makefile to avoid header errors (and only use gcc)
+" let g:ale_c_parse_makefile = 1
+" let g:ale_c_cc_executable = 'gcc'
+
+" TEMP ALE CONFIG (disable C linting)
+" let b:ale_linters = {'javascript': ['eslint']}
+" let g:ale_linters_explicit = 1
+" TEMP ALE CONFIG
+
+" let g:ale_fixers = {'javascript': ['prettier-eslint']}
+
+" Auto refresh on modification
+set autoread
+au CursorHold * checktime
+
+" ALE documentation (help files)
+" packloadall
+" silent! helptags ALL
