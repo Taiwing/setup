@@ -72,7 +72,7 @@ fi
 
 ######################### Install dependencies #################################
 
-NIX_DEPS="bat ripgrep thefuck vim"
+NIX_DEPS="bat ripgrep thefuck vim zoxide"
 
 if [ ! -z $INSTALL ]; then
 	pacman -Syu alacritty tmux
